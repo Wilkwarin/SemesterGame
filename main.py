@@ -1,9 +1,12 @@
+# main.py
+
 import pygame
 import pytmx
+from moving_object import MovingObject  # Импорт класса MovingObject
 
 # Инициализация Pygame
 pygame.init()
-screen = pygame.display.set_mode((960, 960))
+screen = pygame.display.set_mode((800, 800))
 
 # Загрузка карты
 tmx_data = pytmx.load_pygame("game/mapa.tmx")  # Убедитесь, что путь правильный
@@ -18,36 +21,59 @@ for layer in tmx_data.layers:
 if path_layer is None:
     raise ValueError("Слой 'Path' не найден!")
 
-
-# Функция для проверки направлений и проходимости
+# Функция для проверки свойств тайлов
 def get_tile_properties(tile_x, tile_y):
-    # Получаем GID тайла
-    tile_gid = path_layer.data[tile_y][
-        tile_x]  # Примечание: координаты (x, y) в Tiled идут как (x, y), но в pytmx: [y][x]
-
-    # Если GID равен 0, то тайл отсутствует, пропускаем
+    tile_gid = path_layer.data[tile_y][tile_x]
     if tile_gid == 0:
         return None, None  # Нет тайла
-
-    # Получаем свойства по GID
     tile_props = tmx_data.get_tile_properties_by_gid(tile_gid)
     if tile_props:
-        direction = tile_props.get("Direction", "none")  # По умолчанию "none"
-
-        # Теперь проверяем Walkable как целое число
-        walkable = tile_props.get("Walkable", 0)  # Если нет свойства, по умолчанию 0 (непроходимо)
-        walkable = walkable == 1  # Преобразуем в булево значение (1 - True, 0 - False)
-
+        direction = tile_props.get("Direction", "none")
+        walkable = tile_props.get("Walkable", 0) == 1
         return direction, walkable
-    return None, None  # Если свойств нет, возвращаем None
+    return None, None
 
+# Функция для подсветки траектории
+def draw_trajectory():
+    for y in range(tmx_data.height):
+        for x in range(tmx_data.width):
+            direction, _ = get_tile_properties(x, y)
+            if direction:
+                # Подсвечиваем тайлы траектории
+                pygame.draw.rect(screen, (200, 200, 200), (x * 16, y * 16, 16, 16))
 
-# Пример проверки карты
-print("Проверка направлений и проходимости:")
-for y in range(tmx_data.height):
-    for x in range(tmx_data.width):
-        direction, walkable = get_tile_properties(x, y)
-        if direction or walkable is not None:  # Проверяем только если есть направление или проходимость
-            print(f"Точка ({x}, {y}) имеет направление: {direction}, проходимость: {walkable}")
-        # else:
-        #     print(f"Точка ({x}, {y}) не имеет кастомных свойств.")
+# Создание объекта MovingObject
+moving_object = MovingObject(3, 0, path_layer, tmx_data)  # Начинаем с координат (0, 0)
+
+# Основной цикл игры
+running = True
+while running:
+    screen.fill((255, 255, 255))  # Очистка экрана (белый фон)
+
+    # Обрабатываем события
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Подсветка всей траектории
+    draw_trajectory()
+
+    # Перемещаем объект
+    moving_object.move()
+
+    # Отображаем объект
+    screen.blit(moving_object.image, moving_object.rect)
+
+    # Обновляем экран
+    pygame.display.flip()
+
+    # Обрабатываем события
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Задержка для "плавного" движения
+    pygame.time.delay(100)
+
+# Закрытие игры
+pygame.quit()
