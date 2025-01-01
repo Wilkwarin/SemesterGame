@@ -2,7 +2,7 @@
 
 import pygame
 import pytmx
-from moving_object import MovingObject  # Импорт класса MovingObject
+from moving_object import MovingObject
 
 # Инициализация Pygame
 pygame.init()
@@ -11,28 +11,20 @@ screen = pygame.display.set_mode((800, 800))
 # Загрузка карты
 tmx_data = pytmx.load_pygame("game/mapa.tmx")  # Убедитесь, что путь правильный
 
-# Получение слоёв Path и Terrain
+# Получение слоёв Path, Terrain, и MovingObjects
 path_layer = None
 terrain_layer = None
+object_layer = None
 for layer in tmx_data.layers:
     if layer.name == "Path":
         path_layer = layer
     elif layer.name == "Terrain":
         terrain_layer = layer
+    elif layer.name == "MovingObjects":
+        object_layer = layer
 
-if not path_layer or not terrain_layer:
-    raise ValueError("Один или оба слоя Path и Terrain не найдены!")
-
-# Функция для проверки свойств тайлов
-def get_tile_properties(layer, tile_x, tile_y):
-    """
-    Получить свойства тайла для указанного слоя.
-    """
-    tile_gid = layer.data[tile_y][tile_x]
-    if tile_gid == 0:
-        return None  # Нет тайла
-    tile_props = tmx_data.get_tile_properties_by_gid(tile_gid)
-    return tile_props
+if not path_layer or not terrain_layer or not object_layer:
+    raise ValueError("Один или несколько слоёв Path, Terrain или MovingObjects не найдены!")
 
 # Функция для отрисовки слоя
 def draw_layer(layer):
@@ -47,8 +39,16 @@ def draw_layer(layer):
                 if tile_image:
                     screen.blit(tile_image, (x * 16, y * 16))  # Позиция тайла в пикселях
 
-# Создание объекта MovingObject
-moving_object = MovingObject(3, 0, path_layer, tmx_data)  # Начинаем с координат (3, 0)
+# Загрузка изображения для MovingObject
+moving_object_image = pygame.image.load("assets/images/balls/1.png").convert_alpha()
+
+# Создание объектов MovingObject
+moving_objects = []
+for obj in object_layer:
+    if obj.type == "MovingObject":
+        start_x = int(obj.x / 16)  # Перевод из пикселей в тайловые координаты
+        start_y = int(obj.y / 16)
+        moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data, moving_object_image))
 
 # Основной цикл игры
 running = True
@@ -63,11 +63,10 @@ while running:
     # Отрисовка слоя Terrain
     draw_layer(terrain_layer)
 
-    # Перемещаем объект
-    moving_object.move()
-
-    # Отображаем объект
-    screen.blit(moving_object.image, moving_object.rect)
+    # Перемещение и отображение объектов
+    for moving_object in moving_objects:
+        moving_object.move()
+        screen.blit(moving_object.image, moving_object.rect)
 
     # Обновляем экран
     pygame.display.flip()
