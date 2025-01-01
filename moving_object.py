@@ -28,8 +28,11 @@ class MovingObject(pygame.sprite.Sprite):
         """ Перемещение объекта по траектории """
         direction = self.direction
 
-        # Отладочное сообщение о текущих координатах и направлении
-        print(f"({self.x}, {self.y}) - Направление: {direction}")
+        if direction == 0:
+            return
+
+        # # Отладочное сообщение о текущих координатах и направлении
+        # print(f"({self.x}, {self.y}) - Направление: {direction}")
 
         if direction == 1:  # Вниз
             self.y += 1
@@ -46,12 +49,13 @@ class MovingObject(pygame.sprite.Sprite):
         elif direction == 7:  # Налево-вниз
             self.y += 1
 
+
         # Обновляем позицию
         self.rect.topleft = (self.x * 16, self.y * 16)
 
         # Обновляем направление
         self.direction = self.get_direction(self.x, self.y)
 
-        # Отладочное сообщение о новом направлении
-        print(f"Новые координаты: ({self.x}, {self.y}) - Направление: {self.direction}")
+        # # Отладочное сообщение о новом направлении
+        # print(f"Новые координаты: ({self.x}, {self.y}) - Направление: {self.direction}")
 
