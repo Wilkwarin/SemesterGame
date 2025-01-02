@@ -1,17 +1,12 @@
-# main.py
-
 import pygame
 import pytmx
 from moving_object import MovingObject
 
-# Инициализация Pygame
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
 
-# Загрузка карты
-tmx_data = pytmx.load_pygame("game/mapa.tmx")  # Убедитесь, что путь правильный
+tmx_data = pytmx.load_pygame("game/mapa.tmx")
 
-# Получение слоёв Path, Terrain, и MovingObjects
 path_layer = None
 terrain_layer = None
 object_layer = None
@@ -24,55 +19,52 @@ for layer in tmx_data.layers:
         object_layer = layer
 
 if not path_layer or not terrain_layer or not object_layer:
-    raise ValueError("Один или несколько слоёв Path, Terrain или MovingObjects не найдены!")
+    raise ValueError("Какой-то слой не найден!")
 
-# Функция для отрисовки слоя
 def draw_layer(layer):
-    """
-    Отрисовка заданного слоя.
-    """
     for y in range(tmx_data.height):
         for x in range(tmx_data.width):
             tile_gid = layer.data[y][x]
             if tile_gid != 0:
                 tile_image = tmx_data.get_tile_image_by_gid(tile_gid)
                 if tile_image:
-                    screen.blit(tile_image, (x * 16, y * 16))  # Позиция тайла в пикселях
+                    screen.blit(tile_image, (x * 16, y * 16))
 
-# Загрузка изображения для MovingObject
-moving_object_image = pygame.image.load("assets/images/balls/1.png").convert_alpha()
-
-# Создание объектов MovingObject
 moving_objects = []
+start_positions = []
 for obj in object_layer:
     if obj.type == "MovingObject":
-        start_x = int(obj.x / 16)  # Перевод из пикселей в тайловые координаты
+        start_x = int(obj.x / 16)
         start_y = int(obj.y / 16)
-        moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data, moving_object_image))
+        start_positions.append((start_x, start_y))
+        moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data, "assets/images/balls"))
 
-# Основной цикл игры
+steps_to_add_ball = 2
+max_balls = 40
+step_counter = 0
+
 running = True
 while running:
-    screen.fill((255, 255, 255))  # Очистка экрана (белый фон)
+    screen.fill((255, 255, 255))
 
-    # Обрабатываем события
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    # Отрисовка слоя Terrain
     draw_layer(terrain_layer)
 
-    # Перемещение и отображение объектов
     for moving_object in moving_objects:
         moving_object.move()
         screen.blit(moving_object.image, moving_object.rect)
 
-    # Обновляем экран
+    step_counter += 1
+    if step_counter >= steps_to_add_ball and len(moving_objects) < max_balls:
+        start_x, start_y = start_positions[0]
+        moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data, "assets/images/balls"))
+        step_counter = 0
+
     pygame.display.flip()
 
-    # Задержка для "плавного" движения
-    pygame.time.delay(100)
+    pygame.time.delay(50)
 
-# Закрытие игры
 pygame.quit()

@@ -1,19 +1,20 @@
-# moving_object.py
-
 import pygame
+import random
 
 class MovingObject(pygame.sprite.Sprite):
-    def __init__(self, start_x, start_y, path_layer, tmx_data, image):
+    def __init__(self, start_x, start_y, path_layer, tmx_data, images_path):
         super().__init__()
-        self.image = image  # Используем переданное изображение
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (start_x * 16, start_y * 16)  # Переводим координаты в пиксели
+        self.color = random.randint(1, 5)
+        image_path = f"{images_path}/{self.color}.png"
+        self.image = pygame.image.load(image_path).convert_alpha()
 
-        # Слой и данные для получения направлений
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (start_x * 16, start_y * 16)
+
         self.path_layer = path_layer
         self.tmx_data = tmx_data
-        self.x, self.y = start_x, start_y  # Начальные координаты
-        self.direction = self.get_direction(self.x, self.y)  # Направление
+        self.x, self.y = start_x, start_y
+        self.direction = self.get_direction(self.x, self.y)
 
     def get_direction(self, x, y):
         tile_gid = self.path_layer.data[y][x]
@@ -23,29 +24,17 @@ class MovingObject(pygame.sprite.Sprite):
         return None
 
     def move(self):
-        """ Перемещение объекта по траектории """
         direction = self.direction
 
-        if direction == 0 or direction is None:
+        if direction == 0:
             return
 
-        if direction == 1:  # Вниз
+        if direction == 1 or direction == 5 or direction == 7:
             self.y += 1
-        elif direction == 2:  # Направо
+        elif direction == 2 or direction == 4:
             self.x += 1
-        elif direction == 3:  # Налево
+        elif direction == 3 or direction == 6:
             self.x -= 1
-        elif direction == 4:  # Вниз-направо
-            self.x += 1
-        elif direction == 5:  # Направо-вниз
-            self.y += 1
-        elif direction == 6:  # Вниз-налево
-            self.x -= 1
-        elif direction == 7:  # Налево-вниз
-            self.y += 1
 
-        # Обновляем позицию
         self.rect.topleft = (self.x * 16, self.y * 16)
-
-        # Обновляем направление
         self.direction = self.get_direction(self.x, self.y)

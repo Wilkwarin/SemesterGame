@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e8d27fd-ec7b-487c-b64b-cfcc99080710" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/mapa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/game/mapa.tmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/moving_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/moving_object.py" afterDir="false" />
     </list>
@@ -79,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735412461473</updated>
       <workItem from="1735412462143" duration="657000" />
-      <workItem from="1735420930495" duration="17332000" />
+      <workItem from="1735420930495" duration="21283000" />
     </task>
     <servers />
   </component>
@@ -87,6 +86,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SemesterGame$main.coverage" NAME="main Coverage Results" MODIFIED="1735773204952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SemesterGame$main.coverage" NAME="main Coverage Results" MODIFIED="1735837284589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
