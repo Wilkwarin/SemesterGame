@@ -1,6 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.11.0" name="LandTiles_32_32" tilewidth="16" tileheight="16" tilecount="1200" columns="30">
  <image source="LandTiles_32_32.png" width="480" height="640"/>
+ <tile id="0">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="2">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="3">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="4">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="5">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="6">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="7">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="8">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="9">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="10">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="11">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="30">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="35">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="36">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="37">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="38">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="39">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="60">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="65">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="66">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="67">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="90">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="95">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="96">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="97">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="120">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="125">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="126">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="127">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="128">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="129">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="130">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="131">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="132">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="133">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="150">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="151">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="152">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="153">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="154">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="155">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="156">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="157">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="158">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="159">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="160">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="161">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="162">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="163">
+  <properties>
+   <property name="Border" type="int" value="1"/>
+  </properties>
+ </tile>
  <tile id="240">
   <properties>
    <property name="HeroWalk" type="int" value="1"/>
@@ -83,6 +333,7 @@
  </tile>
  <tile id="270">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -108,26 +359,31 @@
  </tile>
  <tile id="275">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="276">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="277">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="278">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="279">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -168,6 +424,7 @@
  </tile>
  <tile id="300">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -193,16 +450,19 @@
  </tile>
  <tile id="305">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="306">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="307">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -248,6 +508,7 @@
  </tile>
  <tile id="330">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -273,16 +534,19 @@
  </tile>
  <tile id="335">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="336">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="337">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -328,6 +592,7 @@
  </tile>
  <tile id="360">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -353,16 +618,19 @@
  </tile>
  <tile id="365">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="366">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="367">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -418,71 +686,85 @@
  </tile>
  <tile id="390">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="391">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="392">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="393">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="394">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="395">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="396">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="397">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="398">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="399">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="400">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="401">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="402">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="403">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -683,6 +965,7 @@
  </tile>
  <tile id="510">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -708,26 +991,31 @@
  </tile>
  <tile id="515">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="516">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="517">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="518">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="519">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -768,6 +1056,7 @@
  </tile>
  <tile id="540">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -793,16 +1082,19 @@
  </tile>
  <tile id="545">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="546">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="547">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -848,6 +1140,7 @@
  </tile>
  <tile id="570">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -873,16 +1166,19 @@
  </tile>
  <tile id="575">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="576">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="577">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -928,6 +1224,7 @@
  </tile>
  <tile id="600">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -953,16 +1250,19 @@
  </tile>
  <tile id="605">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="606">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="607">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1018,71 +1318,85 @@
  </tile>
  <tile id="630">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="631">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="632">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="633">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="634">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="635">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="636">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="637">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="638">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="639">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="640">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="641">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="642">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="643">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1283,6 +1597,7 @@
  </tile>
  <tile id="750">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1308,26 +1623,31 @@
  </tile>
  <tile id="755">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="756">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="757">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="758">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="759">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1368,6 +1688,7 @@
  </tile>
  <tile id="780">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1393,16 +1714,19 @@
  </tile>
  <tile id="785">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="786">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="787">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1448,6 +1772,7 @@
  </tile>
  <tile id="810">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1473,16 +1798,19 @@
  </tile>
  <tile id="815">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="816">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="817">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1528,6 +1856,7 @@
  </tile>
  <tile id="840">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1553,16 +1882,19 @@
  </tile>
  <tile id="845">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="846">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="847">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1618,71 +1950,85 @@
  </tile>
  <tile id="870">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="871">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="872">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="873">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="874">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="875">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="876">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="877">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="878">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="879">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="880">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="881">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="882">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="883">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1863,16 +2209,19 @@
  </tile>
  <tile id="974">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="975">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="976">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1883,81 +2232,97 @@
  </tile>
  <tile id="990">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="991">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="992">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="993">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="994">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="995">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="996">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="997">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="998">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="999">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1004">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1005">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1006">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1007">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1008">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1009">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -1968,201 +2333,241 @@
  </tile>
  <tile id="1020">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1021">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1022">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1023">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1024">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1025">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1026">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1027">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1034">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1035">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1036">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1037">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1038">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1039">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1040">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1041">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1050">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1051">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1052">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1053">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1054">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1055">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1056">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1057">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1064">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1065">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1066">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1067">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1068">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1069">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1070">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1071">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1080">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1081">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1082">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1083">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1084">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1085">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1086">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1087">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -2203,86 +2608,103 @@
  </tile>
  <tile id="1099">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1100">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1101">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1110">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1111">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1112">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1113">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1114">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1115">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1116">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1117">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1118">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1119">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1120">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1121">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1122">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1123">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -2298,66 +2720,84 @@
  </tile>
  <tile id="1127">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1128">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1129">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1130">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1131">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1139">
+  <properties>
+   <property name="Path" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1154">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1155">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1156">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1157">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1158">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1159">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1160">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1161">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
@@ -2368,41 +2808,49 @@
  </tile>
  <tile id="1184">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1185">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1186">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1187">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1188">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1189">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1190">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="1191">
   <properties>
+   <property name="Border" type="int" value="1"/>
    <property name="HeroWalk" type="int" value="1"/>
   </properties>
  </tile>
