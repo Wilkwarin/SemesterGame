@@ -31,7 +31,7 @@ def draw_layer(layer):
                 if tile_image:
                     screen.blit(tile_image, (x * 16, y * 16))
 
-hero = Hero(5, 5, terrain_layer, tmx_data)
+hero = Hero(5, 22, terrain_layer, tmx_data)
 
 moving_objects = []
 start_positions = []
