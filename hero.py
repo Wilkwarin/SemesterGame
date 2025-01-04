@@ -6,19 +6,44 @@ class Hero(pygame.sprite.Sprite):
     MAX_FALL_SPEED = 16
     JUMP_SPEED = -64
     WALK_SPEED = 16
+    ANIMATION_SPEED = 5
 
     def __init__(self, x, y, terrain_layer, tmx_data):
         super().__init__()
-        # Создаем героя как синий квадрат 32x32
-        self.image = pygame.Surface((self.TILE_SIZE * 2, self.TILE_SIZE * 2))
-        self.image.fill((0, 0, 255))  # Синий цвет
+
+        self.sprites = {
+            "jump_left": pygame.image.load("assets/images/girl/Rosette_Att_Jump1_L.png"),
+            "jump_right": pygame.image.load("assets/images/girl/Rosette_Att_Jump1_R.png"),
+            "stand_left": pygame.image.load("assets/images/girl/Rosette_Stand_L.png"),
+            "stand_right": pygame.image.load("assets/images/girl/Rosette_Stand_R.png"),
+            "walk_left": self.load_animation("assets/images/girl/Rosette_Att_Walk_Anim_L.png"),
+            "walk_right": self.load_animation("assets/images/girl/Rosette_Att_Walk_Anim_R.png"),
+        }
+
+        self.image = self.sprites["stand_right"]
         self.rect = self.image.get_rect()
         self.rect.topleft = (x * self.TILE_SIZE, y * self.TILE_SIZE)
+        # # Создаем героя как синий квадрат 32x32
+        # self.image = pygame.Surface((self.TILE_SIZE * 2, self.TILE_SIZE * 2))
+        # self.image.fill((0, 0, 255))  # Синий цвет
+        # self.rect = self.image.get_rect()
+        # self.rect.topleft = (x * self.TILE_SIZE, y * self.TILE_SIZE)
+
         self.terrain_layer = terrain_layer
         self.tmx_data = tmx_data
         self.dy = 0
         self.dx = 0
         self.on_ground = False
+        self.facing = "right"
+        self.walk_frame = 0
+        self.animation_counter = 0
+
+    @staticmethod
+    def load_animation(image_path):
+        sheet = pygame.image.load(image_path)
+        frame_width = sheet.get_width() // 4
+        frames = [sheet.subsurface(pygame.Rect(i * frame_width, 0, frame_width, sheet.get_height())) for i in range(4)]
+        return frames
 
     def can_walk(self, tile_x, tile_y):
         tile_x = int(tile_x)
@@ -45,8 +70,10 @@ class Hero(pygame.sprite.Sprite):
         self.dx = 0
         if keys[pygame.K_LEFT]:
             self.dx = -self.WALK_SPEED
+            self.facing = "left"
         if keys[pygame.K_RIGHT]:
             self.dx = self.WALK_SPEED
+            self.facing = "right"
 
         new_left = self.rect.left + self.dx
         tile_x_left = new_left // self.TILE_SIZE
@@ -62,12 +89,20 @@ class Hero(pygame.sprite.Sprite):
         tile_y_top = min(max(0, tile_y_top), max_tile_y)
 
         # sverhu
-        walk_status_top_left = self.can_walk(self.rect.left // self.TILE_SIZE, tile_y_top)
-        walk_status_top_right = self.can_walk((self.rect.right - 1) // self.TILE_SIZE, tile_y_top)
+        while self.dy < 0:
+            next_top = self.rect.top + self.dy
+            tile_y_top = (next_top // self.TILE_SIZE) + 1
 
-        if (walk_status_top_left == "Border" or walk_status_top_right == "Border") and self.dy < 0:
-            self.rect.top = tile_y_top * self.TILE_SIZE
-            self.dy = 0
+            walk_status_top_left = self.can_walk(self.rect.left // self.TILE_SIZE, tile_y_top)
+            walk_status_top_right = self.can_walk((self.rect.right - 1) // self.TILE_SIZE, tile_y_top)
+
+            if (walk_status_top_left == "Border" or walk_status_top_right == "Border"
+                    or walk_status_top_left == "HeroWalk" or walk_status_top_right == "HeroWalk"):
+                self.rect.top = (tile_y_top + 1) * self.TILE_SIZE
+                self.dy = 0
+                break
+            else:
+                break
 
         # snizu
         walk_status_bottom_left = self.can_walk(self.rect.left // self.TILE_SIZE, tile_y_bottom)
@@ -104,7 +139,22 @@ class Hero(pygame.sprite.Sprite):
             self.dy = self.JUMP_SPEED
             self.on_ground = False
 
+    def update_sprite(self):
+        if self.dy != 0:
+            self.image = self.sprites["jump_left"] if self.facing == "left" else self.sprites["jump_right"]
+        elif self.dx == 0:
+            self.image = self.sprites["stand_left"] if self.facing == "left" else self.sprites["stand_right"]
+        else:
+            frames = self.sprites["walk_left"] if self.facing == "left" else self.sprites["walk_right"]
+
+            self.animation_counter += 1
+            if self.animation_counter >= self.ANIMATION_SPEED:
+                self.animation_counter = 0
+                self.walk_frame = (self.walk_frame + 1) % len(frames)
+            self.image = frames[self.walk_frame]
+
     def update(self, keys):
         self.apply_gravity()
         self.move(keys)
         self.jump(keys)
+        self.update_sprite()
