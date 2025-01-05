@@ -33,7 +33,7 @@ def draw_layer(layer):
                 if tile_image:
                     screen.blit(tile_image, (x * TILE_SIZE, y * TILE_SIZE))
 
-hero = Hero(42, 3, terrain_layer, tmx_data)
+hero = Hero(42, 5, terrain_layer, tmx_data)
 
 moving_objects = []
 start_positions = []
@@ -43,6 +43,7 @@ for obj in object_layer:
         start_y = int(obj.y / TILE_SIZE)
         start_positions.append((start_x, start_y))
         moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
+
 
 steps_to_add_ball = 15 # если скорость = 2, шагов 15. Если скорость = 1, то шагов 30...
 max_balls = 40

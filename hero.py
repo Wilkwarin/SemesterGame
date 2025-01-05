@@ -2,6 +2,12 @@ import pygame
 
 TILE_SIZE = 16
 
+TELEPORT_PAIRS = {
+    11: 12,
+    21: 22,
+    31: 32,
+}
+
 class Hero(pygame.sprite.Sprite):
     GRAVITY = 10
     MAX_FALL_SPEED = 16
@@ -57,6 +63,32 @@ class Hero(pygame.sprite.Sprite):
                 return "HeroWalk"
         return False
 
+    def check_teleport(self, tile_x, tile_y):
+        tile_gid = self.terrain_layer.data[tile_y][tile_x]
+        if tile_gid == 0:
+            return None
+
+        tile_props = self.tmx_data.get_tile_properties_by_gid(tile_gid)
+        if tile_props:
+            return tile_props.get("Teleport", None)
+        return None
+
+    def apply_teleport(self):
+        tile_x = self.rect.centerx // TILE_SIZE
+        tile_y = self.rect.bottom // TILE_SIZE
+
+        teleport_id = self.check_teleport(tile_x, tile_y)
+        if teleport_id and teleport_id in TELEPORT_PAIRS:
+            destination_id = TELEPORT_PAIRS[teleport_id]
+            for y in range(len(self.terrain_layer.data)):
+                for x in range(len(self.terrain_layer.data[y])):
+                    dest_gid = self.terrain_layer.data[y][x]
+                    dest_props = self.tmx_data.get_tile_properties_by_gid(dest_gid)
+                    if dest_props and dest_props.get("Teleport") == destination_id:
+                        self.rect.topleft = (x * TILE_SIZE, (y + 1) * TILE_SIZE)
+                        self.dy = 0
+                        return
+
     def apply_gravity(self):
         if not self.on_ground:
             self.dy = min(self.dy + self.GRAVITY, self.MAX_FALL_SPEED)
@@ -86,19 +118,43 @@ class Hero(pygame.sprite.Sprite):
 
         # sverhu
         while self.dy < 0:
-            next_top = self.rect.top + self.dy
-            tile_y_top = (next_top // TILE_SIZE) + 1
+            current_top = self.rect.top
+            next_top = current_top + self.dy
 
-            walk_status_top_left = self.can_walk(self.rect.left // TILE_SIZE, tile_y_top)
-            walk_status_top_right = self.can_walk((self.rect.right - 1) // TILE_SIZE, tile_y_top)
+            current_tile_y = current_top // TILE_SIZE
+            next_tile_y = next_top // TILE_SIZE
 
-            if (walk_status_top_left == "Border" or walk_status_top_right == "Border"
-                    or walk_status_top_left == "HeroWalk" or walk_status_top_right == "HeroWalk"):
-                self.rect.top = (tile_y_top + 1) * TILE_SIZE
-                self.dy = 0
+            collision_detected = False
+            for tile_y in range(current_tile_y + 3, next_tile_y - 1, -1):  # Двигаемся вверх
+                walk_status_top_left = self.can_walk(self.rect.left // TILE_SIZE, tile_y)
+                walk_status_top_right = self.can_walk((self.rect.right - 1) // TILE_SIZE, tile_y)
+
+                if walk_status_top_left == "Border" or walk_status_top_right == "Border":
+                    # Столкновение обнаружено
+                    self.rect.top = (tile_y + 1) * TILE_SIZE
+                    self.dy = 0
+                    collision_detected = True
+                    break
+
+            if collision_detected:
                 break
-            else:
-                break
+
+            break
+
+        # while self.dy < 0:
+        #     next_top = self.rect.top + self.dy
+        #     tile_y_top = (next_top // TILE_SIZE) + 1
+        #
+        #     walk_status_top_left = self.can_walk(self.rect.left // TILE_SIZE, tile_y_top)
+        #     walk_status_top_right = self.can_walk((self.rect.right - 1) // TILE_SIZE, tile_y_top)
+        #
+        #     if (walk_status_top_left == "Border" or walk_status_top_right == "Border"
+        #             or walk_status_top_left == "HeroWalk" or walk_status_top_right == "HeroWalk"):
+        #         self.rect.top = (tile_y_top + 1) * TILE_SIZE
+        #         self.dy = 0
+        #         break
+        #     else:
+        #         break
 
         # snizu
         walk_status_bottom_left = self.can_walk(self.rect.left // TILE_SIZE, tile_y_bottom)
@@ -150,6 +206,7 @@ class Hero(pygame.sprite.Sprite):
             self.image = frames[self.walk_frame]
 
     def update(self, keys):
+        self.apply_teleport()
         self.apply_gravity()
         self.move(keys)
         self.jump(keys)
