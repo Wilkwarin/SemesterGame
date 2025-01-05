@@ -1,5 +1,6 @@
 import pygame
 from ball import Ball
+from moving_object import MovingObject
 
 TILE_SIZE = 16
 
@@ -16,7 +17,7 @@ class Hero(pygame.sprite.Sprite):
     WALK_SPEED = 16
     ANIMATION_SPEED = 5
 
-    def __init__(self, x, y, terrain_layer, tmx_data):
+    def __init__(self, x, y, terrain_layer, path_layer, tmx_data):
         super().__init__()
 
         self.sprites = {
@@ -33,6 +34,7 @@ class Hero(pygame.sprite.Sprite):
         self.rect.topleft = (x * TILE_SIZE, y * TILE_SIZE)
 
         self.terrain_layer = terrain_layer
+        self.path_layer = path_layer
         self.tmx_data = tmx_data
         self.dy = 0
         self.dx = 0
@@ -242,3 +244,75 @@ class Hero(pygame.sprite.Sprite):
 
         if self.ball:
             surface.blit(self.ball.image, self.ball.rect.topleft)
+
+    def check_trajectory(self, path_layer, path_data):
+        tile_x = self.rect.centerx // TILE_SIZE
+        tile_y = self.rect.centery // TILE_SIZE
+
+        # if self.held_ball_color is None:
+        #     print("У героя нет шарика.")
+        #     return
+
+        neighbours = [
+            (tile_x, tile_y),
+            (tile_x - 1, tile_y),
+            (tile_x + 1, tile_y),
+            (tile_x, tile_y - 1),
+            (tile_x, tile_y + 1),
+        ]
+
+        matched_id = None
+
+        # Ищем совпадение цвета на соседних тайлах
+        for neighbour in neighbours:
+            if neighbour in path_data:
+                for obj_id, color in path_data[neighbour]:
+                    if color == self.held_ball_color:
+                        matched_id = obj_id
+                        print(f"Найден шарик с ID {obj_id} совпадающего цвета {color} на тайле {neighbour}.")
+                        break
+            if matched_id:
+                break
+
+        # if not matched_id:
+        #     print("Совпадений с цветом героя не найдено.")
+        #     return
+
+        # Преобразуем path_data в линейный список объектов для подсчета
+        linear_path_data = [(obj_id, color) for _, objs in path_data.items() for obj_id, color in objs]
+        # Отладочный вывод: структура линейного path_data
+        print("Линейная структура path_data:")
+        for obj_id, color in linear_path_data:
+            print(f"ID {obj_id}, Цвет {color}")
+
+        # Подсчет подряд идущих шариков того же цвета
+        def count_consecutive(data_list, start_index, color, direction):
+            count = 0
+            print(f"count {count}")
+            index = start_index
+            print(f"index {index}")
+            print(f"len(data_list) {len(data_list)}")
+            while 0 <= index < len(data_list):
+                _, obj_color = data_list[index]
+                if obj_color == color:
+                    count += 1
+                    index += direction
+                else:
+                    break
+            return count
+
+        # Находим индекс совпавшего шарика
+        matched_index = next(
+            (i for i, (obj_id, _) in enumerate(linear_path_data) if obj_id == matched_id),
+            None,
+        )
+        print(f"matched_index {matched_index}")
+
+        if matched_index is not None:
+            left_count = count_consecutive(linear_path_data, matched_index - 1, self.held_ball_color, -1)
+            right_count = count_consecutive(linear_path_data, matched_index + 1, self.held_ball_color, 1)
+            total_count = left_count + right_count + 1
+            print(f"Подряд идущие шарики того же цвета: Влево {left_count}, Вправо {right_count}, Всего {total_count}")
+        # else:
+        #     print("Не удалось найти совпавший шарик в path_data.")
+

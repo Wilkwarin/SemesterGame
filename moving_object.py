@@ -4,8 +4,12 @@ import random
 TILE_SIZE = 16
 
 class MovingObject(pygame.sprite.Sprite):
+    next_id = 1
+
     def __init__(self, start_x, start_y, path_layer, tmx_data):
         super().__init__()
+        self.id = MovingObject.next_id  # Присваиваем уникальный ID
+        MovingObject.next_id += 1  # Инкремент для следующего объекта
         self.color = random.randint(1, 5)
         image_path = f"assets/images/balls/{self.color}.png"
         self.image = pygame.image.load(image_path).convert_alpha()

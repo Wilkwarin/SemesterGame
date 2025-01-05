@@ -33,7 +33,7 @@ def draw_layer(layer):
                 if tile_image:
                     screen.blit(tile_image, (x * TILE_SIZE, y * TILE_SIZE))
 
-hero = Hero(42, 5, terrain_layer, tmx_data)
+hero = Hero(42, 5, terrain_layer, path_layer, tmx_data)
 
 moving_objects = []
 start_positions = []
@@ -45,8 +45,10 @@ for obj in object_layer:
         moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
 
 steps_to_add_ball = 15 # если скорость = 2, шагов 15. Если скорость = 1, то шагов 30...
-max_balls = 40
+max_balls = 10
 step_counter = 0
+
+path_data = {}
 
 running = True
 while running:
@@ -61,10 +63,26 @@ while running:
     draw_layer(terrain_layer)
 
     hero.update(keys)
-    hero.draw(screen)
+
+    path_data.clear()
 
     for moving_object in moving_objects:
         moving_object.move()
+
+        tile_x = moving_object.rect.centerx // TILE_SIZE
+        tile_y = moving_object.rect.centery // TILE_SIZE
+        color = moving_object.color
+        obj_id = moving_object.id
+
+        if (tile_x, tile_y) not in path_data:
+            path_data[(tile_x, tile_y)] = []
+        path_data[(tile_x, tile_y)].append((obj_id, color))
+
+        # print(f"Записан объект на тайле ({tile_x}, {tile_y}) с цветом {color}.")
+        # print("Текущее содержимое path_data:")
+        # for key, value in path_data.items():
+        #     print(f"Тайл {key}: {value}")
+
         screen.blit(moving_object.image, moving_object.rect)
 
     step_counter += 1
@@ -72,6 +90,9 @@ while running:
         start_x, start_y = start_positions[0]
         moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
         step_counter = 0
+
+    hero.check_trajectory(path_layer, path_data)
+    hero.draw(screen)
 
     pygame.display.flip()
     pygame.time.delay(50)
