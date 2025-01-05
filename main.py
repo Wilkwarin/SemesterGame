@@ -91,7 +91,12 @@ while running:
         moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
         step_counter = 0
 
-    hero.check_trajectory(path_layer, path_data)
+    # Вызов check_trajectory и получение удалённых шариков
+    deleted_ids = hero.check_trajectory(path_data)
+
+    # Удаление шариков из moving_objects
+    moving_objects = [obj for obj in moving_objects if obj.id not in deleted_ids]
+
     hero.draw(screen)
 
     pygame.display.flip()

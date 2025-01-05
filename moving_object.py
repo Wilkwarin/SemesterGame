@@ -11,6 +11,7 @@ class MovingObject(pygame.sprite.Sprite):
         self.id = MovingObject.next_id  # Присваиваем уникальный ID
         MovingObject.next_id += 1  # Инкремент для следующего объекта
         self.color = random.randint(1, 5)
+        # self.color = 2
         image_path = f"assets/images/balls/{self.color}.png"
         self.image = pygame.image.load(image_path).convert_alpha()
 

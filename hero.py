@@ -245,13 +245,9 @@ class Hero(pygame.sprite.Sprite):
         if self.ball:
             surface.blit(self.ball.image, self.ball.rect.topleft)
 
-    def check_trajectory(self, path_layer, path_data):
+    def check_trajectory(self, path_data):
         tile_x = self.rect.centerx // TILE_SIZE
         tile_y = self.rect.centery // TILE_SIZE
-
-        # if self.held_ball_color is None:
-        #     print("У героя нет шарика.")
-        #     return
 
         neighbours = [
             (tile_x, tile_y),
@@ -263,56 +259,54 @@ class Hero(pygame.sprite.Sprite):
 
         matched_id = None
 
-        # Ищем совпадение цвета на соседних тайлах
         for neighbour in neighbours:
             if neighbour in path_data:
                 for obj_id, color in path_data[neighbour]:
                     if color == self.held_ball_color:
                         matched_id = obj_id
-                        print(f"Найден шарик с ID {obj_id} совпадающего цвета {color} на тайле {neighbour}.")
                         break
             if matched_id:
                 break
 
-        # if not matched_id:
-        #     print("Совпадений с цветом героя не найдено.")
-        #     return
+        # Преобразуем path_data в линейный список
+        linear_path_data = [(obj_id, color, tile) for tile, objs in path_data.items() for obj_id, color in objs]
 
-        # Преобразуем path_data в линейный список объектов для подсчета
-        linear_path_data = [(obj_id, color) for _, objs in path_data.items() for obj_id, color in objs]
-        # Отладочный вывод: структура линейного path_data
-        print("Линейная структура path_data:")
-        for obj_id, color in linear_path_data:
-            print(f"ID {obj_id}, Цвет {color}")
-
-        # Подсчет подряд идущих шариков того же цвета
-        def count_consecutive(data_list, start_index, color, direction):
-            count = 0
-            print(f"count {count}")
+        def remove_consecutive(data_list, start_index, color, direction):
+            indices_to_remove = []
             index = start_index
-            print(f"index {index}")
-            print(f"len(data_list) {len(data_list)}")
             while 0 <= index < len(data_list):
-                _, obj_color = data_list[index]
+                obj_id, obj_color, tile = data_list[index]
                 if obj_color == color:
-                    count += 1
+                    indices_to_remove.append(index)
                     index += direction
                 else:
                     break
-            return count
+            return indices_to_remove
 
         # Находим индекс совпавшего шарика
         matched_index = next(
-            (i for i, (obj_id, _) in enumerate(linear_path_data) if obj_id == matched_id),
+            (i for i, (obj_id, _, _) in enumerate(linear_path_data) if obj_id == matched_id),
             None,
         )
-        print(f"matched_index {matched_index}")
+
+        deleted_ids = set()
 
         if matched_index is not None:
-            left_count = count_consecutive(linear_path_data, matched_index - 1, self.held_ball_color, -1)
-            right_count = count_consecutive(linear_path_data, matched_index + 1, self.held_ball_color, 1)
-            total_count = left_count + right_count + 1
-            print(f"Подряд идущие шарики того же цвета: Влево {left_count}, Вправо {right_count}, Всего {total_count}")
-        # else:
-        #     print("Не удалось найти совпавший шарик в path_data.")
+            # Собираем индексы для удаления
+            left_indices = remove_consecutive(linear_path_data, matched_index - 1, self.held_ball_color, -1)
+            right_indices = remove_consecutive(linear_path_data, matched_index + 1, self.held_ball_color, 1)
+            all_indices_to_remove = set(left_indices + right_indices + [matched_index])
+
+            # Отладочный вывод
+            print(f"Индексы для удаления: {all_indices_to_remove}")
+
+            # Удаляем шарики из path_data и собираем ID удалённых объектов
+            for index in sorted(all_indices_to_remove, reverse=True):
+                obj_id, _, tile = linear_path_data[index]
+                path_data[tile] = [(id, color) for id, color in path_data[tile] if id != obj_id]
+                deleted_ids.add(obj_id)
+
+            # Возвращаем удалённые ID
+            return deleted_ids
+        return set()  # Если совпадений не найдено, возвращаем пустое множество
 
