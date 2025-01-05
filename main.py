@@ -44,7 +44,6 @@ for obj in object_layer:
         start_positions.append((start_x, start_y))
         moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
 
-
 steps_to_add_ball = 15 # если скорость = 2, шагов 15. Если скорость = 1, то шагов 30...
 max_balls = 40
 step_counter = 0
@@ -62,7 +61,7 @@ while running:
     draw_layer(terrain_layer)
 
     hero.update(keys)
-    screen.blit(hero.image, hero.rect)
+    hero.draw(screen)
 
     for moving_object in moving_objects:
         moving_object.move()

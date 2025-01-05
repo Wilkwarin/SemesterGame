@@ -1,4 +1,5 @@
 import pygame
+from ball import Ball
 
 TILE_SIZE = 16
 
@@ -39,6 +40,8 @@ class Hero(pygame.sprite.Sprite):
         self.facing = "right"
         self.walk_frame = 0
         self.animation_counter = 0
+        self.held_ball_color = None
+        self.ball = None
 
     @staticmethod
     def load_animation(image_path):
@@ -191,6 +194,24 @@ class Hero(pygame.sprite.Sprite):
             self.dy = self.JUMP_SPEED
             self.on_ground = False
 
+    def check_ball_point(self):
+        tile_x = self.rect.centerx // TILE_SIZE
+        tile_y = self.rect.bottom // TILE_SIZE
+
+        tile_gid = self.terrain_layer.data[tile_y][tile_x]
+        if tile_gid == 0:
+            return
+
+        tile_props = self.tmx_data.get_tile_properties_by_gid(tile_gid)
+        if tile_props and "BallColor" in tile_props:
+            ball_color = tile_props["BallColor"]
+            self.held_ball_color = ball_color
+            self.ball = Ball(ball_color, self.rect)
+
+    def handle_input(self, keys):
+        if keys[pygame.K_DOWN]:
+            self.check_ball_point()
+
     def update_sprite(self):
         if self.dy != 0:
             self.image = self.sprites["jump_left"] if self.facing == "left" else self.sprites["jump_right"]
@@ -210,4 +231,14 @@ class Hero(pygame.sprite.Sprite):
         self.apply_gravity()
         self.move(keys)
         self.jump(keys)
+        self.handle_input(keys)
         self.update_sprite()
+
+        if self.ball:
+            self.ball.update(self.rect)
+
+    def draw(self, surface):
+        surface.blit(self.image, self.rect.topleft)
+
+        if self.ball:
+            surface.blit(self.ball.image, self.ball.rect.topleft)
