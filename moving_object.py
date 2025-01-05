@@ -1,20 +1,24 @@
 import pygame
 import random
 
+TILE_SIZE = 16
+
 class MovingObject(pygame.sprite.Sprite):
-    def __init__(self, start_x, start_y, path_layer, tmx_data, images_path):
+    def __init__(self, start_x, start_y, path_layer, tmx_data):
         super().__init__()
         self.color = random.randint(1, 5)
-        image_path = f"{images_path}/{self.color}.png"
+        image_path = f"assets/images/balls/{self.color}.png"
         self.image = pygame.image.load(image_path).convert_alpha()
 
         self.rect = self.image.get_rect()
-        self.rect.topleft = (start_x * 16, start_y * 16)
+        self.rect.topleft = (start_x * TILE_SIZE, start_y * TILE_SIZE)
 
         self.path_layer = path_layer
         self.tmx_data = tmx_data
-        self.x, self.y = start_x, start_y
-        self.direction = self.get_direction(self.x, self.y)
+        self.x, self.y = start_x * TILE_SIZE, start_y * TILE_SIZE
+        self.direction = self.get_direction(int(self.x // TILE_SIZE), int(self.y // TILE_SIZE))
+
+        self.speed = 2
 
     def get_direction(self, x, y):
         tile_gid = self.path_layer.data[y][x]
@@ -24,17 +28,17 @@ class MovingObject(pygame.sprite.Sprite):
         return None
 
     def move(self):
-        direction = self.direction
-
-        if direction == 0:
+        if self.direction == 0:
             return
 
-        if direction == 1 or direction == 5 or direction == 7:
-            self.y += 1
-        elif direction == 2 or direction == 4:
-            self.x += 1
-        elif direction == 3 or direction == 6:
-            self.x -= 1
+        if self.direction in [1, 5, 7]:
+            self.y += self.speed
+        elif self.direction in [2, 4]:
+            self.x += self.speed
+        elif self.direction in [3, 6]:
+            self.x -= self.speed
 
-        self.rect.topleft = (self.x * 16, self.y * 16)
-        self.direction = self.get_direction(self.x, self.y)
+        self.rect.topleft = (int(self.x), int(self.y))
+
+        if int(self.x) % TILE_SIZE == 0 and int(self.y) % TILE_SIZE == 0:
+            self.direction = self.get_direction(int(self.x // TILE_SIZE), int(self.y // TILE_SIZE))

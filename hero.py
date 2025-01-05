@@ -1,7 +1,8 @@
 import pygame
 
+TILE_SIZE = 16
+
 class Hero(pygame.sprite.Sprite):
-    TILE_SIZE = 16
     GRAVITY = 10
     MAX_FALL_SPEED = 16
     JUMP_SPEED = -64
@@ -22,12 +23,7 @@ class Hero(pygame.sprite.Sprite):
 
         self.image = self.sprites["stand_right"]
         self.rect = self.image.get_rect()
-        self.rect.topleft = (x * self.TILE_SIZE, y * self.TILE_SIZE)
-        # # Создаем героя как синий квадрат 32x32
-        # self.image = pygame.Surface((self.TILE_SIZE * 2, self.TILE_SIZE * 2))
-        # self.image.fill((0, 0, 255))  # Синий цвет
-        # self.rect = self.image.get_rect()
-        # self.rect.topleft = (x * self.TILE_SIZE, y * self.TILE_SIZE)
+        self.rect.topleft = (x * TILE_SIZE, y * TILE_SIZE)
 
         self.terrain_layer = terrain_layer
         self.tmx_data = tmx_data
@@ -76,42 +72,42 @@ class Hero(pygame.sprite.Sprite):
             self.facing = "right"
 
         new_left = self.rect.left + self.dx
-        tile_x_left = new_left // self.TILE_SIZE
+        tile_x_left = new_left // TILE_SIZE
         max_tile_x = len(self.terrain_layer.data[0]) - 1
         tile_x_left = max(0, tile_x_left)
-        tile_x_right = (self.rect.right + self.dx - 1) // self.TILE_SIZE
+        tile_x_right = (self.rect.right + self.dx - 1) // TILE_SIZE
         tile_x_right = min(max_tile_x, tile_x_right)
 
         max_tile_y = len(self.terrain_layer.data) - 1
-        tile_y_bottom = (self.rect.bottom - 1) // self.TILE_SIZE
+        tile_y_bottom = (self.rect.bottom - 1) // TILE_SIZE
         tile_y_bottom = min(max(0, tile_y_bottom), max_tile_y)
-        tile_y_top = self.rect.top // self.TILE_SIZE
+        tile_y_top = self.rect.top // TILE_SIZE
         tile_y_top = min(max(0, tile_y_top), max_tile_y)
 
         # sverhu
         while self.dy < 0:
             next_top = self.rect.top + self.dy
-            tile_y_top = (next_top // self.TILE_SIZE) + 1
+            tile_y_top = (next_top // TILE_SIZE) + 1
 
-            walk_status_top_left = self.can_walk(self.rect.left // self.TILE_SIZE, tile_y_top)
-            walk_status_top_right = self.can_walk((self.rect.right - 1) // self.TILE_SIZE, tile_y_top)
+            walk_status_top_left = self.can_walk(self.rect.left // TILE_SIZE, tile_y_top)
+            walk_status_top_right = self.can_walk((self.rect.right - 1) // TILE_SIZE, tile_y_top)
 
             if (walk_status_top_left == "Border" or walk_status_top_right == "Border"
                     or walk_status_top_left == "HeroWalk" or walk_status_top_right == "HeroWalk"):
-                self.rect.top = (tile_y_top + 1) * self.TILE_SIZE
+                self.rect.top = (tile_y_top + 1) * TILE_SIZE
                 self.dy = 0
                 break
             else:
                 break
 
         # snizu
-        walk_status_bottom_left = self.can_walk(self.rect.left // self.TILE_SIZE, tile_y_bottom)
-        walk_status_bottom_right = self.can_walk((self.rect.right - 1) // self.TILE_SIZE, tile_y_bottom)
+        walk_status_bottom_left = self.can_walk(self.rect.left // TILE_SIZE, tile_y_bottom)
+        walk_status_bottom_right = self.can_walk((self.rect.right - 1) // TILE_SIZE, tile_y_bottom)
 
         if (((walk_status_bottom_left == "HeroWalk" or walk_status_bottom_right == "HeroWalk")
                 or (walk_status_bottom_left == "Border" or walk_status_bottom_right == "Border"))
                 and self.dy > 0):
-            self.rect.bottom = tile_y_bottom * self.TILE_SIZE
+            self.rect.bottom = tile_y_bottom * TILE_SIZE
             self.dy = 0
             self.on_ground = True
 
