@@ -46,7 +46,7 @@ for obj in object_layer:
 
 steps_to_add_ball = 15 # если скорость = 2, шагов 15. Если скорость = 1, то шагов 30...
 step_counter = 0
-total_deleted = 0
+max_balls = 10
 
 path_data = {}
 
@@ -66,6 +66,8 @@ while running:
 
     path_data.clear()
 
+    new_moving_objects = []
+
     for moving_object in moving_objects:
         moving_object.move()
 
@@ -78,27 +80,51 @@ while running:
             path_data[(tile_x, tile_y)] = []
         path_data[(tile_x, tile_y)].append((obj_id, color))
 
-        # print(f"Записан объект на тайле ({tile_x}, {tile_y}) с цветом {color}.")
-        # print("Текущее содержимое path_data:")
-        # for key, value in path_data.items():
-        #     print(f"Тайл {key}: {value}")
-
         screen.blit(moving_object.image, moving_object.rect)
 
     step_counter += 1
-    deleted_ids = hero.check_trajectory(path_data)
-    total_deleted += len(deleted_ids)
-    print(f"total_deleted: {total_deleted}")
+    deleted_ids = []
 
-    max_balls = 10 - total_deleted
-    print(f"max_balls: {max_balls}")
+    result = hero.check_trajectory(path_data)
+
+    if isinstance(result, set):
+        max_balls -= len(result)
+        deleted_ids = result
+
+    elif isinstance(result, int):
+        neighbour_id = result
+        for moving_object in moving_objects:
+            if moving_object.id == neighbour_id:
+                moving_object.color = hero.held_ball_color
+                image_path = f"assets/images/balls/{moving_object.color}.png"
+                moving_object.image = pygame.image.load(image_path).convert_alpha()
+                break
 
     if step_counter >= steps_to_add_ball and len(moving_objects) < max_balls:
         start_x, start_y = start_positions[0]
         moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
         step_counter = 0
 
-    moving_objects = [obj for obj in moving_objects if obj.id not in deleted_ids]
+    id_and_colour = []
+    coords = []
+
+    for obj in moving_objects:
+        if obj.id not in deleted_ids:
+            deletion_flag = 0
+        else:
+            deletion_flag = 1
+        id_and_colour.append((obj, deletion_flag))
+        coords.append((obj.rect.centerx, obj.rect.centery))
+
+    id_and_colour = [entry for entry in id_and_colour if entry[1] == 0]
+
+    for index, (obj, deletion_flag) in enumerate(id_and_colour):
+        tile_x, tile_y = coords[index]
+        obj.rect.centerx = tile_x
+        obj.rect.centery = tile_y
+        new_moving_objects.append(obj)
+
+    moving_objects = new_moving_objects
 
     hero.draw(screen)
 

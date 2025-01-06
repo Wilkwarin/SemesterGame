@@ -240,6 +240,7 @@ class Hero(pygame.sprite.Sprite):
         ]
 
         matched_id = None
+        neighbours_to_change = []
 
         for neighbour in neighbours:
             if neighbour in path_data:
@@ -247,8 +248,9 @@ class Hero(pygame.sprite.Sprite):
                     if color == self.held_ball_color:
                         matched_id = obj_id
                         break
-            if matched_id:
-                break
+                    else:
+                        neighbours_to_change.append(neighbour)
+
 
         # Преобразуем path_data в линейный список
         linear_path_data = [(obj_id, color, tile) for tile, objs in path_data.items() for obj_id, color in objs]
@@ -277,16 +279,19 @@ class Hero(pygame.sprite.Sprite):
             right_indices = remove_consecutive(linear_path_data, matched_index + 1, self.held_ball_color, 1)
             all_indices_to_remove = set(left_indices + right_indices + [matched_index])
 
-            print(f"Индексы для удаления: {all_indices_to_remove}")
-
             if len(all_indices_to_remove) >= 2:
                 for index in sorted(all_indices_to_remove, reverse=True):
                     obj_id, _, tile = linear_path_data[index]
                     path_data[tile] = [(id, color) for id, color in path_data[tile] if id != obj_id]
                     deleted_ids.add(obj_id)
 
-                print(f"Айди для удаления: {deleted_ids}")
+                # print(f"Айди для удаления: {deleted_ids}")
                 return deleted_ids
+            else:
+                if neighbours_to_change:
+                    tile = neighbours_to_change[0]
+                    for obj_id, color in path_data.get(tile, []):
+                       return obj_id
 
         return set()
 

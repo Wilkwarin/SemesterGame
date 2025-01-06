@@ -10,7 +10,7 @@ class MovingObject(pygame.sprite.Sprite):
         super().__init__()
         self.id = MovingObject.next_id
         MovingObject.next_id += 1
-        self.color = random.randint(1, 5)
+        self.color = random.randint(1, 3)
         # self.color = 2
         image_path = f"assets/images/balls/{self.color}.png"
         self.image = pygame.image.load(image_path).convert_alpha()
@@ -47,3 +47,5 @@ class MovingObject(pygame.sprite.Sprite):
 
         if int(self.x) % TILE_SIZE == 0 and int(self.y) % TILE_SIZE == 0:
             self.direction = self.get_direction(int(self.x // TILE_SIZE), int(self.y // TILE_SIZE))
+
+
