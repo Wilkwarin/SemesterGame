@@ -8,8 +8,8 @@ class MovingObject(pygame.sprite.Sprite):
 
     def __init__(self, start_x, start_y, path_layer, tmx_data):
         super().__init__()
-        self.id = MovingObject.next_id  # Присваиваем уникальный ID
-        MovingObject.next_id += 1  # Инкремент для следующего объекта
+        self.id = MovingObject.next_id
+        MovingObject.next_id += 1
         self.color = random.randint(1, 5)
         # self.color = 2
         image_path = f"assets/images/balls/{self.color}.png"

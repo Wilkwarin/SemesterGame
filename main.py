@@ -45,8 +45,8 @@ for obj in object_layer:
         moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
 
 steps_to_add_ball = 15 # если скорость = 2, шагов 15. Если скорость = 1, то шагов 30...
-max_balls = 10
 step_counter = 0
+total_deleted = 0
 
 path_data = {}
 
@@ -86,15 +86,18 @@ while running:
         screen.blit(moving_object.image, moving_object.rect)
 
     step_counter += 1
+    deleted_ids = hero.check_trajectory(path_data)
+    total_deleted += len(deleted_ids)
+    print(f"total_deleted: {total_deleted}")
+
+    max_balls = 10 - total_deleted
+    print(f"max_balls: {max_balls}")
+
     if step_counter >= steps_to_add_ball and len(moving_objects) < max_balls:
         start_x, start_y = start_positions[0]
         moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
         step_counter = 0
 
-    # Вызов check_trajectory и получение удалённых шариков
-    deleted_ids = hero.check_trajectory(path_data)
-
-    # Удаление шариков из moving_objects
     moving_objects = [obj for obj in moving_objects if obj.id not in deleted_ids]
 
     hero.draw(screen)

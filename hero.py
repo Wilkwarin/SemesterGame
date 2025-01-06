@@ -1,6 +1,5 @@
 import pygame
 from ball import Ball
-from moving_object import MovingObject
 
 TILE_SIZE = 16
 
@@ -135,7 +134,6 @@ class Hero(pygame.sprite.Sprite):
                 walk_status_top_right = self.can_walk((self.rect.right - 1) // TILE_SIZE, tile_y)
 
                 if walk_status_top_left == "Border" or walk_status_top_right == "Border":
-                    # Столкновение обнаружено
                     self.rect.top = (tile_y + 1) * TILE_SIZE
                     self.dy = 0
                     collision_detected = True
@@ -143,23 +141,7 @@ class Hero(pygame.sprite.Sprite):
 
             if collision_detected:
                 break
-
             break
-
-        # while self.dy < 0:
-        #     next_top = self.rect.top + self.dy
-        #     tile_y_top = (next_top // TILE_SIZE) + 1
-        #
-        #     walk_status_top_left = self.can_walk(self.rect.left // TILE_SIZE, tile_y_top)
-        #     walk_status_top_right = self.can_walk((self.rect.right - 1) // TILE_SIZE, tile_y_top)
-        #
-        #     if (walk_status_top_left == "Border" or walk_status_top_right == "Border"
-        #             or walk_status_top_left == "HeroWalk" or walk_status_top_right == "HeroWalk"):
-        #         self.rect.top = (tile_y_top + 1) * TILE_SIZE
-        #         self.dy = 0
-        #         break
-        #     else:
-        #         break
 
         # snizu
         walk_status_bottom_left = self.can_walk(self.rect.left // TILE_SIZE, tile_y_bottom)
@@ -283,7 +265,6 @@ class Hero(pygame.sprite.Sprite):
                     break
             return indices_to_remove
 
-        # Находим индекс совпавшего шарика
         matched_index = next(
             (i for i, (obj_id, _, _) in enumerate(linear_path_data) if obj_id == matched_id),
             None,
@@ -292,21 +273,20 @@ class Hero(pygame.sprite.Sprite):
         deleted_ids = set()
 
         if matched_index is not None:
-            # Собираем индексы для удаления
             left_indices = remove_consecutive(linear_path_data, matched_index - 1, self.held_ball_color, -1)
             right_indices = remove_consecutive(linear_path_data, matched_index + 1, self.held_ball_color, 1)
             all_indices_to_remove = set(left_indices + right_indices + [matched_index])
 
-            # Отладочный вывод
             print(f"Индексы для удаления: {all_indices_to_remove}")
 
-            # Удаляем шарики из path_data и собираем ID удалённых объектов
-            for index in sorted(all_indices_to_remove, reverse=True):
-                obj_id, _, tile = linear_path_data[index]
-                path_data[tile] = [(id, color) for id, color in path_data[tile] if id != obj_id]
-                deleted_ids.add(obj_id)
+            if len(all_indices_to_remove) >= 2:
+                for index in sorted(all_indices_to_remove, reverse=True):
+                    obj_id, _, tile = linear_path_data[index]
+                    path_data[tile] = [(id, color) for id, color in path_data[tile] if id != obj_id]
+                    deleted_ids.add(obj_id)
 
-            # Возвращаем удалённые ID
-            return deleted_ids
-        return set()  # Если совпадений не найдено, возвращаем пустое множество
+                print(f"Айди для удаления: {deleted_ids}")
+                return deleted_ids
+
+        return set()
 
