@@ -92,7 +92,7 @@ while running:
             running = False
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if restart_button.collidepoint(event.pos):  # Проверяем нажатие на кнопку "Restart"
+            if restart_button.collidepoint(event.pos):
                 reset_game()
                 game_over = False
 
@@ -109,7 +109,6 @@ while running:
             result_exit = moving_object.move()
 
             if result_exit == "exit":
-                print("exit")
                 game_over = True
                 break
 
@@ -135,7 +134,7 @@ while running:
 
         elif isinstance(result, int):
             neighbour_id = result
-            print(f"neighbour_id = {neighbour_id}")
+            # print(f"neighbour_id = {neighbour_id}")
             for moving_object in moving_objects:
                 if moving_object.id == neighbour_id:
                     moving_object.color = hero.held_ball_color
@@ -154,7 +153,7 @@ while running:
 
         hero.draw(screen)
 
-    elif max_balls == 0:  # Победа
+    elif max_balls == 0:
         background_color = (77, 75, 118)
         screen.fill(background_color)
 
@@ -163,7 +162,7 @@ while running:
         pygame.draw.rect(screen, (0, 0, 255), restart_button)
         draw_text("RESTART", 250, 400)
 
-    if game_over:  # Проигрыш
+    if game_over:
         background_color = (77, 75, 118)
         screen.fill(background_color)
         draw_text("YOU LOSE", 230, 300)
