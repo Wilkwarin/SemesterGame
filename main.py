@@ -79,6 +79,10 @@ def reset_game():
             start_y = int(obj.y / TILE_SIZE)
             moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
 
+game_over = False
+
+restart_button = pygame.Rect(250, 400, 280, 45)
+
 running = True
 while running:
     screen.fill((255, 255, 255))
@@ -88,11 +92,11 @@ while running:
             running = False
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if max_balls == 0:
-                if restart_button.collidepoint(event.pos):
-                    reset_game()
+            if restart_button.collidepoint(event.pos):  # Проверяем нажатие на кнопку "Restart"
+                reset_game()
+                game_over = False
 
-    if max_balls > 0:
+    if max_balls > 0 and not game_over:
         draw_layer(terrain_layer)
 
         hero.update(pygame.key.get_pressed())
@@ -102,7 +106,12 @@ while running:
         new_moving_objects = []
 
         for moving_object in moving_objects:
-            moving_object.move()
+            result_exit = moving_object.move()
+
+            if result_exit == "exit":
+                print("exit")
+                game_over = True
+                break
 
             tile_x = moving_object.rect.centerx // TILE_SIZE
             tile_y = moving_object.rect.centery // TILE_SIZE
@@ -139,36 +148,26 @@ while running:
             moving_objects.append(MovingObject(start_x, start_y, path_layer, tmx_data))
             step_counter = 0
 
-        id_and_colour = []
-        coords = []
-
-        for obj in moving_objects:
-            if obj.id not in deleted_ids:
-                deletion_flag = 0
-            else:
-                deletion_flag = 1
-            id_and_colour.append((obj, deletion_flag))
-            coords.append((obj.rect.centerx, obj.rect.centery))
-
-        id_and_colour = [entry for entry in id_and_colour if entry[1] == 0]
-
-        for index, (obj, deletion_flag) in enumerate(id_and_colour):
-            tile_x, tile_y = coords[index]
-            obj.rect.centerx = tile_x
-            obj.rect.centery = tile_y
-            new_moving_objects.append(obj)
-
-        moving_objects = new_moving_objects
+        moving_objects = [
+            obj for obj in moving_objects if obj.id not in deleted_ids
+        ]
 
         hero.draw(screen)
 
-    else:
+    elif max_balls == 0:  # Победа
         background_color = (77, 75, 118)
         screen.fill(background_color)
 
         draw_text("VICTORY", 250, 300)
 
-        restart_button = pygame.Rect(250, 400, 280, 45)
+        pygame.draw.rect(screen, (0, 0, 255), restart_button)
+        draw_text("RESTART", 250, 400)
+
+    if game_over:  # Проигрыш
+        background_color = (77, 75, 118)
+        screen.fill(background_color)
+        draw_text("YOU LOSE", 230, 300)
+
         pygame.draw.rect(screen, (0, 0, 255), restart_button)
         draw_text("RESTART", 250, 400)
 

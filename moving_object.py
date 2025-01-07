@@ -10,7 +10,7 @@ class MovingObject(pygame.sprite.Sprite):
         super().__init__()
         self.id = MovingObject.next_id
         MovingObject.next_id += 1
-        self.color = random.randint(1, 3)
+        self.color = random.randint(1, 2)
         image_path = f"assets/images/balls/{self.color}.png"
         self.image = pygame.image.load(image_path).convert_alpha()
 
@@ -25,14 +25,15 @@ class MovingObject(pygame.sprite.Sprite):
         self.speed = 2
 
     def get_direction(self, x, y):
-        tile_gid = self.path_layer.data[y][x]
-        tile_props = self.tmx_data.get_tile_properties_by_gid(tile_gid)
-        if tile_props:
-            return tile_props.get("Direction", None)
+        if 0 <= y < len(self.path_layer.data) and 0 <= x < len(self.path_layer.data[0]):
+            tile_gid = self.path_layer.data[y][x]
+            tile_props = self.tmx_data.get_tile_properties_by_gid(tile_gid)
+            if tile_props:
+                return tile_props.get("Direction", None)
         return None
 
     def move(self):
-        if self.direction == 0:
+        if self.direction is None or self.direction == 0:
             return
 
         if self.direction in [1, 5, 7]:
@@ -44,7 +45,21 @@ class MovingObject(pygame.sprite.Sprite):
 
         self.rect.topleft = (int(self.x), int(self.y))
 
+        if self.check_for_exit():
+            return "exit"
+
         if int(self.x) % TILE_SIZE == 0 and int(self.y) % TILE_SIZE == 0:
             self.direction = self.get_direction(int(self.x // TILE_SIZE), int(self.y // TILE_SIZE))
 
+    def check_for_exit(self):
+        tile_x = int(self.x // TILE_SIZE)
+        tile_y = int(self.y // TILE_SIZE)
+
+        if 0 <= tile_y < len(self.path_layer.data) and 0 <= tile_x < len(self.path_layer.data[0]):
+            tile_gid = self.path_layer.data[tile_y][tile_x]
+            tile_props = self.tmx_data.get_tile_properties_by_gid(tile_gid)
+
+            if tile_props and tile_props.get("Exit") == 1:
+                return True
+        return False
 
