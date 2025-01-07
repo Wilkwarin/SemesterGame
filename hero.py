@@ -294,4 +294,8 @@ class Hero(pygame.sprite.Sprite):
                        return obj_id
 
         return set()
+        # if neighbours_to_change:
+        #     tile = neighbours_to_change[0]
+        #     for obj_id, color in path_data.get(tile, []):
+        #         return obj_id
 

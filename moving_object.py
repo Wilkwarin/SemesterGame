@@ -10,8 +10,7 @@ class MovingObject(pygame.sprite.Sprite):
         super().__init__()
         self.id = MovingObject.next_id
         MovingObject.next_id += 1
-        self.color = random.randint(1, 3)
-        # self.color = 2
+        self.color = random.randint(1, 1)
         image_path = f"assets/images/balls/{self.color}.png"
         self.image = pygame.image.load(image_path).convert_alpha()
 
