@@ -127,6 +127,12 @@ while running:
         elif isinstance(result, int):
             neighbour_id = result
             print(f"neighbour_id = {neighbour_id}")
+            for moving_object in moving_objects:
+                if moving_object.id == neighbour_id:
+                    moving_object.color = hero.held_ball_color
+                    image_path = f"assets/images/balls/{moving_object.color}.png"
+                    moving_object.image = pygame.image.load(image_path).convert_alpha()
+                    break
 
         if step_counter >= steps_to_add_ball and len(moving_objects) < max_balls:
             start_x, start_y = start_positions[0]
