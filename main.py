@@ -4,7 +4,12 @@ from moving_object import MovingObject
 from hero import Hero
 
 pygame.init()
+pygame.mixer.init()
 screen = pygame.display.set_mode((800, 800))
+
+pygame.mixer.music.set_volume(0.06)
+pygame.mixer.music.load("assets/sounds/8-bit-music.mp3")
+pygame.mixer.music.play(-1)
 
 font_image = pygame.image.load("assets/images/Letters_8x9_Yellow.png").convert_alpha()
 
@@ -173,4 +178,5 @@ while running:
     pygame.display.flip()
     pygame.time.delay(50)
 
+pygame.mixer.music.stop()
 pygame.quit()
