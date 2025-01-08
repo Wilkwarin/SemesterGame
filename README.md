@@ -87,7 +87,11 @@ Zdroj: [Pixabay - 8-bit Music](https://pixabay.com/ru/music/8-bit-music-on-24524
 
 Po zničení všetkých balónikov alebo po tom, čo balóniky dosiahnu výstupný bod, má hráč možnosť reštartovať hru.
 
+---
+Autor projektu: Mariia Shorokhova
+
 ### 5.2 Ovládanie
 
 - **Šípky vľavo/vpravo/hore**: Pohyb postavy po mape.  
 - **Šípka dole**: Výber balónika na špeciálnom bode.
+
